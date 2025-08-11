@@ -1,0 +1,21 @@
+{
+    "name": "crop",
+    "short_name": "crop",
+    "description": "turn an image into a neatly-cropped avatar of your choosing",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#110D0F",
+    "theme_color": "#110D0F",
+    "icons": [
+        {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -13,8 +13,10 @@ export const metadata: Metadata = {
   title: 'avatar cropper by katelyn/claire',
   description: 'turn an image into a neatly-cropped avatar of your choosing',
   icons: {
-    icon: '/icon.svg'
+    icon: '/icon.svg',
+    apple: '/icons/icon-192x192.png'
   },
+  manifest: '/manifest.json',
   twitter: {
     title: 'avatar cropper by katelyn/claire',
     description: 'turn an image into a neatly-cropped avatar of your choosing'
@@ -26,7 +28,12 @@ export const metadata: Metadata = {
   authors: [
     { name: 'katelyn', url: 'https://katelyn.moe' }
   ],
-  keywords: ['avatar', 'image', 'crop', 'resize', 'scale', 'profile picture', 'pfp', 'avi']
+  keywords: ['avatar', 'image', 'crop', 'resize', 'scale', 'profile picture', 'pfp', 'avi'],
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'crop'
+  }
 };
 
 export default function RootLayout({

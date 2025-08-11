@@ -11,6 +11,8 @@
     width: 600px;
     height: 400px;
 
+    max-width: 90vw;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,8 +43,10 @@
 .container {
     border-radius: 10px;
     width: 600px;
-    height: 600px;
     overflow: hidden;
+
+    max-width: 90vw;
+    aspect-ratio: 1 / 1;
 
     :global(img) {
         width: 100%;
@@ -79,7 +83,8 @@
 .actions {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 10px 20px;
 }
 
 .button_wrap {
@@ -104,6 +109,10 @@
 
     .select_item {
         padding: 8px 12px;
+
+        @media (max-width: 400px) {
+            padding: 12px 14px;
+        }
 
         font: inherit;
         font-weight: 600;

@@ -89,15 +89,13 @@ export default function AvatarCropper() {
         const extension = mimeType.split("/")[1];
 
         let baseName = "avatar";
-        if (originalFileName) {
-            baseName = originalFileName.replace(/\.[^/.]+$/, '');
-        }
+        if (originalFileName) baseName = originalFileName.replace(/\.[^/.]+$/, '');
 
         const dataUrl = canvas.toDataURL(mimeType);
 
         const link = document.createElement("a");
         link.href = dataUrl;
-        link.download = `${baseName}.${extension}`;
+        link.download = `${baseName}_crop.${extension}`;
         document.body.appendChild(link);
 
         link.click();
@@ -110,9 +108,9 @@ export default function AvatarCropper() {
                 <div className={`${styles.upload} ${isDragActive ? styles.dragging : ''}`} {...getRootProps()}>
                     <input {...getInputProps()} />
                     {isDragActive ? (
-                        <p>drop here</p>
+                        <p>drop file</p>
                     ) : (
-                        <p>click or drop an image</p>
+                        <p>upload or drop file</p>
                     )}
                 </div>
             )}

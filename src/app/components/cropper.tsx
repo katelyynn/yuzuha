@@ -4,6 +4,7 @@ import Cropper from 'cropperjs';
 import React, { useEffect, useRef, useState } from 'react';
 import 'cropperjs/dist/cropper.css';
 import styles from "./cropper.module.css";
+import { useDropzone } from 'react-dropzone';
 
 export default function AvatarCropper() {
     const [src, setSrc] = useState<string | null>(null);
@@ -29,14 +30,21 @@ export default function AvatarCropper() {
         }
     }, [src]);
 
-    const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
+    const handleFile = (file: File) => {
+        if (!file.type.startsWith('image/')) return;
 
         const reader = new FileReader();
         reader.onload = () => setSrc(reader.result as string);
         reader.readAsDataURL(file);
     }
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        accept: {'image/*': []},
+        maxFiles: 1,
+        onDrop: (acceptedFiles) => {
+            if (acceptedFiles.length > 0) handleFile(acceptedFiles[0]);
+        }
+    });
 
     const cropImage = () => {
         if (!cropperRef.current) return;
@@ -47,7 +55,16 @@ export default function AvatarCropper() {
 
     return (
         <div className={styles.cropper}>
-            <input type="file" accept="image/*" onChange={onUpload} />
+            {!src && (
+                <div className={`${styles.upload} ${isDragActive ? styles.dragging : ''}`} {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                        <p>drop here</p>
+                    ) : (
+                        <p>click or drop an image</p>
+                    )}
+                </div>
+            )}
 
             {src && (
                 <div className={styles.container}>

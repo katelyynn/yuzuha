@@ -1,0 +1,64 @@
+.cropper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.upload {
+    width: 600px;
+    height: 400px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    color: hsl(var(--l2));
+    background: hsl(var(--l4), 10%);
+    border: 2px dashed hsl(var(--l3), 60%);
+    border-radius: 10px;
+
+    transition-property: background, transform;
+    transition-duration: var(--trans);
+    transition-timing-function: var(--trans-function);
+
+    &.dragging,
+    &:hover {
+        background: hsl(var(--l4), 15%);
+    }
+
+    &.dragging,
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.container {
+    border-radius: 10px;
+    width: 600px;
+    height: 600px;
+}
+
+:global(.cropper-container) {
+    border-radius: 10px;
+    overflow: hidden;
+
+    :global(.cropper-point),
+    :global(.cropper-line),
+    :global(.cropper-view-box) {
+        display: none;
+    }
+
+    :global(.cropper-drag-box),
+    :global(.cropper-face) {
+        opacity: 0;
+    }
+
+    :global(.cropper-dashed) {
+        opacity: 0.4;
+    }
+}

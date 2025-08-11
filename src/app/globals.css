@@ -1,42 +1,128 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
-html,
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+	line-height: 1;
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  --hue: 333;
+  --sat: 1;
+  --lit: 1;
+
+  --trans: 0.25s;
+  --trans-function: cubic-bezier(0.61, 0.36, 0.1, 0.93);
+}
+.colourful,
+body {
+  --c1: var(--hue), calc(var(--sat) * 40%), 100%;
+  --c2: var(--hue), calc(var(--sat) * 60%), 94%;
+  --c3: var(--hue), calc(var(--sat) * 10%), 60%;
+
+  --l2: var(--hue), calc(var(--sat) * 40%), calc(clamp(min(0.5), var(--lit), max(1.5)) * 83%);
+  --l3: var(--hue), calc(var(--sat) * 50%), calc(clamp(min(0.5), var(--lit), max(1.5)) * 70%);
+  --l4: var(--hue), calc(var(--sat) * 60%), calc(clamp(min(0.5), var(--lit), max(1.5)) * 50%);
+}
+body {
+  --b4: var(--hue), calc(var(--sat) * 12% * var(--sat-bg, 1)), 16%;
+  --b5: var(--hue), calc(var(--sat) * 12% * var(--sat-bg, 1)), 12%;
+  --b6: var(--hue), calc(var(--sat) * 14% * var(--sat-bg, 1)), 6%;
+  --b7: #000;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+body {
+  font-family: var(--font-outfit);
+  font-size: 18px;
+  line-height: 22px;
+  user-select: none;
+
+  background: hsl(var(--b6));
+  color: hsl(var(--c2));
+
+  display: flex;
+  justify-content: center;
+  padding: 60px 30px;
+  height: 100vh;
+}
+
+main {
+  width: 900px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+button {
+  appearance: none;
+  padding: 8px 12px;
+
+  font: inherit;
+  font-weight: 600;
+  background: hsl(var(--l3));
+  color: var(--b7);
+  border-radius: 10px;
+  border: none;
+
+  cursor: pointer;
+
+  transition-property: background, transform;
+  transition-duration: var(--trans);
+  transition-timing-function: var(--trans-function);
+
+  &:hover {
+    background: color-mix(in hsl, hsl(var(--l3)), hsl(var(--l4)) 20%);
+  }
+
+  &:active {
+    background: color-mix(in hsl, hsl(var(--l3)), hsl(var(--l4)) 40%);
+    transform: scale(0.98);
   }
 }

@@ -58,6 +58,10 @@ body {
 
   --trans: 0.25s;
   --trans-function: cubic-bezier(0.61, 0.36, 0.1, 0.93);
+
+  --menu-shadow: 2px 2px 24px 0 rgba(0, 0, 0, 0.35), 0 6px 48px 16px rgba(0, 0, 0, 0.65);
+  --primary-shadow: inset 0 1px 0 0 hsl(var(--l2)), inset 0 -30px 20px -20px hsla(var(--l4), 45%);
+  --normal-shadow: inset 0 1px 0 0 hsl(var(--b3)), inset 0 -30px 20px -20px hsl(var(--b6), 40%);
 }
 .colourful,
 body {
@@ -70,6 +74,7 @@ body {
   --l4: var(--hue), calc(var(--sat) * 60%), calc(clamp(min(0.5), var(--lit), max(1.5)) * 50%);
 }
 body {
+  --b3: var(--hue), calc(var(--sat) * 10% * var(--sat-bg, 1)), 30%;
   --b4: var(--hue), calc(var(--sat) * 12% * var(--sat-bg, 1)), 16%;
   --b5: var(--hue), calc(var(--sat) * 12% * var(--sat-bg, 1)), 12%;
   --b6: var(--hue), calc(var(--sat) * 14% * var(--sat-bg, 1)), 6%;
@@ -84,11 +89,6 @@ body {
 
   background: hsl(var(--b6));
   color: hsl(var(--c2));
-
-  display: flex;
-  justify-content: center;
-  padding: 60px 30px;
-  height: 100vh;
 }
 
 main {
@@ -100,6 +100,38 @@ main {
   justify-content: center;
 }
 
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 30px;
+  height: 100vh;
+}
+
+a {
+  color: hsl(var(--l3));
+}
+
+footer {
+  font-size: 16px;
+  line-height: 20px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: hsl(var(--c3));
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
 button {
   appearance: none;
   padding: 8px 12px;
@@ -107,6 +139,7 @@ button {
   font: inherit;
   font-weight: 600;
   background: hsl(var(--l3));
+  box-shadow: var(--primary-shadow);
   color: var(--b7);
   border-radius: 10px;
   border: none;
@@ -145,13 +178,14 @@ button {
   &.normal {
     background: hsl(var(--b4));
     color: hsl(var(--c2));
+    box-shadow: var(--normal-shadow);
 
     &:hover {
-      background: color-mix(in hsl, hsl(var(--b4)), hsl(var(--c1)) 10%);
+      background: hsl(var(--b4), 90%);
     }
 
     &:active {
-      background: color-mix(in hsl, hsl(var(--b4)), hsl(var(--c1)) 20%);
+      background: hsl(var(--b4), 80%);
     }
   }
 }

@@ -15,6 +15,7 @@ export default function AvatarCropper() {
     const imageRef = useRef<HTMLImageElement | null>(null);
     const cropperRef = useRef<Cropper | null>(null);
     const [downloadType, setDownloadType] = useState<"image/png" | "image/jpeg" | "image/webp">("image/png");
+    const [originalFileName, setOriginalFileName] = useState<string | null>(null);
 
     useEffect(() => {
         if (step == 2 && imageRef.current && src) {
@@ -36,6 +37,8 @@ export default function AvatarCropper() {
 
     const handleFile = (file: File) => {
         if (!file.type.startsWith('image/')) return;
+
+        setOriginalFileName(file.name);
 
         const reader = new FileReader();
         reader.onload = () => {
@@ -85,11 +88,16 @@ export default function AvatarCropper() {
         const mimeType = downloadType;
         const extension = mimeType.split("/")[1];
 
+        let baseName = "avatar";
+        if (originalFileName) {
+            baseName = originalFileName.replace(/\.[^/.]+$/, '');
+        }
+
         const dataUrl = canvas.toDataURL(mimeType);
 
         const link = document.createElement("a");
         link.href = dataUrl;
-        link.download = `avatar.${extension}`;
+        link.download = `${baseName}.${extension}`;
         document.body.appendChild(link);
 
         link.click();

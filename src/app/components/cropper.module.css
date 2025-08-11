@@ -54,32 +54,32 @@
     & > :global(img) {
         display: none;
     }
+
+    :global(.cropper-container) {
+        border-radius: 10px;
+        overflow: hidden;
+
+        :global(.cropper-point),
+        :global(.cropper-line),
+        :global(.cropper-view-box) {
+            display: none;
+        }
+
+        :global(.cropper-drag-box),
+        :global(.cropper-face) {
+            opacity: 0;
+        }
+
+        :global(.cropper-dashed) {
+            opacity: 0.4;
+        }
+    }
 }
 
 .actions {
     display: flex;
     justify-content: center;
     gap: 20px;
-}
-
-:global(.cropper-container) {
-    border-radius: 10px;
-    overflow: hidden;
-
-    :global(.cropper-point),
-    :global(.cropper-line),
-    :global(.cropper-view-box) {
-        display: none;
-    }
-
-    :global(.cropper-drag-box),
-    :global(.cropper-face) {
-        opacity: 0;
-    }
-
-    :global(.cropper-dashed) {
-        opacity: 0.4;
-    }
 }
 
 .button_wrap {

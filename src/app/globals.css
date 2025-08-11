@@ -110,8 +110,13 @@ button {
   color: var(--b7);
   border-radius: 10px;
   border: none;
+  height: 38px;
 
   cursor: pointer;
+
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
 
   transition-property: background, transform;
   transition-duration: var(--trans);
@@ -124,5 +129,29 @@ button {
   &:active {
     background: color-mix(in hsl, hsl(var(--l3)), hsl(var(--l4)) 40%);
     transform: scale(0.98);
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5px;
+  }
+
+  & > span {
+    display: flex;
+    align-items: center;
+  }
+
+  &.normal {
+    background: hsl(var(--b4));
+    color: hsl(var(--c2));
+
+    &:hover {
+      background: color-mix(in hsl, hsl(var(--b4)), hsl(var(--c1)) 10%);
+    }
+
+    &:active {
+      background: color-mix(in hsl, hsl(var(--b4)), hsl(var(--c1)) 20%);
+    }
   }
 }
